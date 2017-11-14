@@ -2,7 +2,7 @@
 
 namespace org.tec.datastructures
 {
-    public class Node
+    public class SimpleNode
     {
     }
 }

@@ -33,14 +33,41 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework, Version=3.9.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb">
+      <HintPath>..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Node.cs" />
+    <Compile Include="Hierarchical\AVLTree.cs" />
+    <Compile Include="Hierarchical\BinaryTree.cs" />
+    <Compile Include="Hierarchical\BTree.cs" />
+    <Compile Include="Hierarchical\SplayTree.cs" />
+    <Compile Include="Linear\CircularList.cs" />
+    <Compile Include="Linear\DoubleList.cs" />
+    <Compile Include="Linear\Queue.cs" />
+    <Compile Include="Linear\SimpleList.cs" />
+    <Compile Include="Linear\Stack.cs" />
+    <Compile Include="Nodes\AVLTreeNode.cs" />
+    <Compile Include="Nodes\BinaryTreeNode.cs" />
+    <Compile Include="Nodes\BTreePage.cs" />
+    <Compile Include="Nodes\DoubleNode.cs" />
+    <Compile Include="Nodes\SimpleNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\AVLTreeTest.cs" />
+    <Compile Include="Tests\BinaryTreeTest.cs" />
+    <Compile Include="Tests\BTreeTest.cs" />
+    <Compile Include="Tests\CircularListTest.cs" />
+    <Compile Include="Tests\DoubleListTest.cs" />
+    <Compile Include="Tests\QueueTest.cs" />
+    <Compile Include="Tests\SimpleListTest.cs" />
+    <Compile Include="Tests\StackTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
