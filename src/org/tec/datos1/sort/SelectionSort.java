@@ -1,24 +1,26 @@
 package org.tec.datos1.sort;
 
-public class SelectionSort<T extends Comparable<T>> {
+import org.tec.datos1.benchmark.Sorting;
+
+public class SelectionSort<T extends Comparable<T>> implements Sorting<T> {
 	
-	private void swap(T[] arreglo, int i, int j) {
-		T temp = arreglo[i];
-        arreglo[i] = arreglo[j];
-        arreglo[j] = temp;
+	private void swap(T[] array, int i, int j) {
+		T temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
 	  }
 	
-	public void selectionSort(T[] arreglo) {
-		for (int i = 0; i < arreglo.length - 1; i++) { 
+	public void selectionSort(T[] array) {
+		for (int i = 0; i < array.length - 1; i++) { 
 				int min = i;
-				int posicion = i;
-			for (int j = i + 1; j < arreglo.length; j++ ) {
-				if (arreglo[j].compareTo(arreglo[min]) < 0) {
+				int position = i;
+			for (int j = i + 1; j < array.length; j++ ) {
+				if (array[j].compareTo(array[min]) < 0) {
 					min = j;
 				
 				}
 			}
-			swap(arreglo, posicion, min);
+			swap(array, position, min);
 			
 		}
 		
@@ -26,9 +28,12 @@ public class SelectionSort<T extends Comparable<T>> {
 	
 
 	
-	public void imprimir(T[] array) {
+	public void printSelectionSort(T[] array) {
         for (int i=0; i< array.length; ++i)
             System.out.print(array[i] + " ");
     }
+	 public void execute(T [] miArray) {
+		 this.selectionSort(miArray);   
+	    }
 }	
 

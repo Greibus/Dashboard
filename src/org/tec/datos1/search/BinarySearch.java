@@ -2,20 +2,20 @@ package org.tec.datos1.search;
 
 public class BinarySearch<T extends Comparable<T>> {
 	
-	public T binarySearch(T buscado, T[] arreglo) {
+	public int binarySearch(T find, T[] array) {
 		int min = 0;
-		int max = arreglo.length - 1;
+		int max = array.length - 1;
 		while (min < max) {
-			int mitad = (max + min)/2;
-			if (arreglo[mitad].compareTo(buscado) == 0) {
-				return buscado;
-			} else if (arreglo[mitad].compareTo(buscado) < 0) {
-				min = mitad + 1;
+			int mid = (max + min)/2;
+			if (array[mid].compareTo(find) == 0) {
+				return mid;
+			} else if (array[mid].compareTo(find) < 0) {
+				min = mid + 1;
 			} else 
-				max = mitad - 1;
+				max = mid - 1;
 		}
-		System.out.println("El dato buscado no se encuentra");
-		return null;
+		System.out.println("El dato find no se encuentra");
+		return -1;
 	}
 
 }
