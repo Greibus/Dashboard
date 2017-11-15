@@ -1,7 +1,10 @@
-﻿namespace org.tec.datastructures
+﻿using System;
+
+namespace org.tec.datastructures.Nodes
 {
-    public class BTreePage
-    {
+    public class BTreePage <T> where T : IComparable<T>{
             
+        
+        
     }
 }
