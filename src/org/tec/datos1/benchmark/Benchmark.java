@@ -1,5 +1,7 @@
 package org.tec.datos1.benchmark;
 
+
+
 public class Benchmark<T extends Comparable<T>> {
 	
 	public long medir(Sorting<T> sort, T [] array) {
@@ -12,5 +14,7 @@ public class Benchmark<T extends Comparable<T>> {
 		
 		
 	}
+
+	
 
 }

@@ -1,151 +1,139 @@
 package org.tec.datastructures.nodes;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class Page<T extends Comparable<T>> {
-	public List<T> keys;
-	public int maxChildren;
-	public int minChildren;
-	public int maxKeys;
-	public int minKeys;
-	public int count;
-	public boolean leaf;
-	public List<Page<T>> children;
-	public Page<T> parent;
-	
-	
-	public Page(Page<T> parent, int maxChildren) {
-		this.maxChildren = maxChildren;
-		this.maxKeys = maxChildren - 1;
-		this.minKeys = (maxChildren - 1) / 2;
-		this.minChildren = ((maxChildren - 1) / 2) + 1;
-		this.keys = new ArrayList<T>(maxKeys + 1);
-		this.children = new ArrayList<Page<T>>(maxChildren + 1);
-	}
-	
-	public T getValue(int index) {
-		return keys.get(index);
-	}
-	
-	public Page<T> getChild(int index) {
-		return children.get(index);
-	}
 
-	
-	public void addKey(T value) {
-		if (this.count < maxKeys) {
-			keys.add(value);
-			this.count++;
-			Collections.sort(keys);
-		}
- 
-	 
-	}
+    public T[] keys;
+    public int keysSize;
+    public Page<T>[] children;
+    public int childrenSize;
+    
+    public Comparator<Page<T>> equals = new Comparator<Page<T>>() {
+        @Override
+        public int compare(Page<T> arg0, Page<T> arg1) {
+            return arg0.getKey(0).compareTo(arg1.getKey(0));
+        }
+    };
+
+    public Page<T> parent = null;
+
+    @SuppressWarnings("unchecked")
+	public Page(Page<T> parent, int maxKeySize, int maxChildrenSize) {
+        this.parent = parent;
+        this.keys = (T[]) new Comparable[maxKeySize + 1];
+        this.keysSize = 0;
+        this.children = new Page[maxChildrenSize + 1];
+        this.childrenSize = 0;
+    }
+
+    public T getKey(int index) {
+        return keys[index];
+    }
+
+    public int indeKey(T value) {
+        for (int i = 0; i < keysSize; i++) {
+            if (keys[i].equals(value)) return i;
+        }
+        return -1;
+    }
+    
+    public boolean appendChild(Page<T> child) {
+        child.parent = this;
+        children[childrenSize++] = child;
+        Arrays.sort(children, 0, childrenSize, equals);
+        return true;
+    }
+
+    public boolean deleteChild(Page<T> child) {
+        boolean found = false;
+        if (childrenSize == 0)
+            return found;
+        for (int i = 0; i < childrenSize; i++) {
+            if (children[i].equals(child)) {
+                found = true;
+            } else if (found) {
+                children[i - 1] = children[i];
+            }
+        }
+        if (found) {
+            childrenSize--;
+            children[childrenSize] = null;
+        }
+        return found;
+    }
+
+    public Page<T> deleteChild(int index) {
+        if (index >= childrenSize)
+            return null;
+        Page<T> value = children[index];
+        children[index] = null;
+        for (int i = index + 1; i < childrenSize; i++) {
+            children[i - 1] = children[i];
+        }
+        childrenSize--;
+        children[childrenSize] = null;
+        return value;
+    }
+
+    public int SizeChildren() {
+        return childrenSize;
+    }
+    
+    public void appendKey(T value) {
+        keys[keysSize++] = value;
+        Arrays.sort(keys, 0, keysSize);
+    }
+
+    public T deleteKey(T value) {
+        T removed = null;
+        boolean found = false;
+        if (keysSize == 0) return null;
+        for (int i = 0; i < keysSize; i++) {
+            if (keys[i].equals(value)) {
+                found = true;
+                removed = keys[i];
+            } else if (found) {
+                keys[i - 1] = keys[i];
+            }
+        }
+        if (found) {
+            keysSize--;
+            keys[keysSize] = null;
+        }
+        return removed;
+    }
+
+    public T deleteKey(int index) {
+        if (index >= keysSize)
+            return null;
+        T value = keys[index];
+        for (int i = index + 1; i < keysSize; i++) {
+            keys[i - 1] = keys[i];
+        }
+        keysSize--;
+        keys[keysSize] = null;
+        return value;
+    }
+
+    public int SizeKeys() {
+        return keysSize;
+    }
+
+    public Page<T> getChild(int index) {
+        if (index >= childrenSize)
+            return null;
+        return children[index];
+    }
+
+    public int indexChild(Page<T> child) {
+        for (int i = 0; i < childrenSize; i++) {
+            if (children[i].equals(child))
+                return i;
+        }
+        return -1;
+    }
+
+
 }
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//public class BTreePage <T extends Comparable<T>>{
-//	
-//	private List<T> keys;
-//	private List<BTreePage<T>> branches;
-//	private BTreePage<T> parent;
-//	private Integer size = -1; 
-//	
-//	public BTreePage() {
-//		this(new ArrayList<>());
-//	}
-//	
-//	public BTreePage(Integer size) {
-//		this(new ArrayList<>());
-//		setSize(size);
-//	}
-//	
-//	public BTreePage(List<T> Keys) {
-//		keys = new ArrayList<>(Keys);
-//		branches = new ArrayList<>();
-//		parent = null;
-//	}
-//
-//	public List<T> getKeys() {
-//		return keys;
-//	}
-//
-//	public void setKeys(List<T> keys) {
-//		this.keys = keys;
-//	}
-//
-//	public List<BTreePage<T>> getBranches() {
-//		return branches;
-//	}
-//
-//	public void setBranches(List<BTreePage<T>> branches) {
-//		this.branches = branches;
-//	}
-//
-//	public BTreePage<T> getParent() {
-//		return parent;
-//	}
-//
-//	public void setParent(BTreePage<T> Parent) {
-//		parent = Parent;
-//	}
-//
-//	public Integer getSize() {
-//		return size;
-//	}
-//
-//	public void setSize(Integer Size) {
-//		size = Size;
-//	}
-//	
-//	public boolean isLeaf() {
-//		return (branches.size() == 0);
-//	}
-//
-//	public int addKey(T value) {
-//		int index = 0;
-//		for (T key : keys) {
-//			if (key.compareTo(value) > 0) {
-//				break;
-//			}
-//			index++;
-//		}
-//		keys.add(index, value);
-//		return index;
-//	}
-//
-//	public void removeKey(T key) {
-//		keys.remove(key);
-//		
-//	}
-//
-//	public List<BTreePage<T>> split(Integer separator, BTreePage<T> parent) {
-//		int pageSize = this.getSize();
-//		
-//		BTreePage<T> leftBranch = new BTreePage<T>(keys.subList(0, separator));
-//		leftBranch.setSize(pageSize);
-//		leftBranch.setParent(parent);
-//		
-//		BTreePage<T> rightBranch = new BTreePage<T>(keys.subList(separator+1,keys.size()));
-//		rightBranch.setSize(pageSize);
-//		rightBranch.setParent(parent);
-//		
-//		List<BTreePage<T>> branches = new ArrayList<>();
-//		branches.add(leftBranch);
-//		branches.add(rightBranch);
-//		return branches;
-//	}
-//
-//	public void replaceBranch(BTreePage<T> Page, Integer separator, Integer index) {
-//		List<BTreePage<T>> Branches = Page.split(separator,this);
-//		branches.add(index, Branches.get(0));
-//		branches.add(index+1, Branches.get(1));
-//		branches.remove(Page);
-//	}
-//	
-//}

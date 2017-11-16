@@ -32,14 +32,4 @@ public class NodeDi<T extends Comparable<T>> implements Comparable<NodeDi<T>>{
 		outgoing.add(vert);
 	}
 	
-	@Override
-	public String toString() {
-		String retval = "";
-		retval += "NodeDi<T>: " + value + " : ";
-		retval += " In: ";
-		for (NodeDi<T> each : incoming) retval+= each.value + " ";
-		retval += "Out: ";
-		for (NodeDi<T> each : outgoing) retval += each.value + " ";
-		return retval;
-	}
 }

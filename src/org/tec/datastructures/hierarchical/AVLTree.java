@@ -16,20 +16,22 @@ public class AVLTree<T extends Comparable<T>> {
 		return root;
 	}
 
-	// Buscar Nodo
-	public AVLNodo<T> buscar(T d, AVLNodo<T> r) {
+	public AVLNodo<T> buscar(T d) {
+		return buscar(d, root);
+		
+	}
+	private AVLNodo<T> buscar(T d, AVLNodo<T> root) {
 		if (root == null) {
 			return null;
-		} else if (r.dato == d) {
-			return r;
-		} else if (r.dato.compareTo(d) < 0) {
-			return buscar(d, r.rigth);
+		} else if (root.dato == d) {
+			return root;
+		} else if (root.dato.compareTo(d) < 0) {
+			return buscar(d, root.left);
 		} else {
-			return buscar(d, r.left);
+			return buscar(d, root.rigth);
 		}
 	}
-
-	// Obtener el factor de equilibrio
+	
 	public int obtenerheight(AVLNodo<T> x) {
 		if (x == null) {
 			return -1;
@@ -118,11 +120,11 @@ public class AVLTree<T extends Comparable<T>> {
 			subAr.height = subAr.left.height + 1;
 		} else {
 			subAr.height = Math.max(obtenerheight(subAr.left), obtenerheight(subAr.rigth)) + 1;
+			nuevoPadre.height = subAr.height;
 		}
 		return nuevoPadre;
 	}
 
-	// Metodo para Insertar SImple
 	public void insertar(T dato) {
 		AVLNodo<T> nuevo = new AVLNodo<T>(dato);
 		if (root == null) {
@@ -159,9 +161,12 @@ public class AVLTree<T extends Comparable<T>> {
 		t.height = Math.max(obtenerheight(t.left), obtenerheight(t.rigth)) + 1;
 		return t;
 	}
-
+	
+	public AVLNodo<T> eliminarAVL(T x) {
+		return eliminarAVL(x, this.root);
+	}
 	// Eliminar
-	public AVLNodo<T> eliminarAVL(T x, AVLNodo<T> t) {
+	private AVLNodo<T> eliminarAVL(T x, AVLNodo<T> t) {
 		StringBuilder sb = new StringBuilder();
 		StringBuilder sb1 = new StringBuilder();
 		sb.append("");

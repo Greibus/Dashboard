@@ -83,14 +83,14 @@ public class DijkstraGraph<T extends Comparable<T>> {
 	}
 
 
-	private void DepthFirstSearch(NodeDi<T> v){
-		v.state = State.VISITED;
-		for (NodeDi<T> each : v.outgoing) {
+	private void DepthFirstSearch(NodeDi<T> visited){
+		visited.state = State.VISITED;
+		for (NodeDi<T> each : visited.outgoing) {
 			if (each.state ==State.UNVISITED) {
 				DepthFirstSearch(each);
 			}
 		}
-		v.state = State.COMPLETE;
+		visited.state = State.COMPLETE;
 	}
 
 	public boolean BreadthFirstSearch() {
@@ -115,10 +115,10 @@ public class DijkstraGraph<T extends Comparable<T>> {
 		return isConnected();
 	}
 
-	public boolean BreadthFirstSearch(T v1) {
+	public boolean BreadthFirstSearch(T visited1) {
 		if (vertices.isEmpty()) return false;
 		clearStates();
-		NodeDi<T> root = findNodeDi(v1);
+		NodeDi<T> root = findNodeDi(visited1);
 		if (root==null) return false;
 		Queue<NodeDi<T>> queue = new LinkedList<>();
 		queue.add(root);
@@ -137,32 +137,32 @@ public class DijkstraGraph<T extends Comparable<T>> {
 		return isConnected();
 	}
 
-	private boolean Dijkstra(T v1) {
+	private boolean Dijkstra(T visited1) {
 		if (vertices.isEmpty()) return false;
 		resetDistances();
-		NodeDi<T> source = findNodeDi(v1);
+		NodeDi<T> source = findNodeDi(visited1);
 		if (source==null) return false;
 		source.minDistance = 0;
-		PriorityQueue<NodeDi<T>> pq = new PriorityQueue<>();
-		pq.add(source);
-		while (!pq.isEmpty()){
-			NodeDi<T> u = pq.poll();
-			for (NodeDi<T> v : u.outgoing) {
-				Edge e = findEdge(u, v);
+		PriorityQueue<NodeDi<T>> priorety = new PriorityQueue<>();
+		priorety.add(source);
+		while (!priorety.isEmpty()){
+			NodeDi<T> unvisited = priorety.poll();
+			for (NodeDi<T> visited : unvisited.outgoing) {
+				Edge e = findEdge(unvisited, visited);
 				if (e==null) return false;
-				int totalDistance = u.minDistance + e.cost;
-				if (totalDistance < v.minDistance) {
-					pq.remove(v);
-					v.minDistance = totalDistance;
-					v.previous = u;
-					pq.add(v);
+				int totalDistance = unvisited.minDistance + e.cost;
+				if (totalDistance < visited.minDistance) {
+					priorety.remove(visited);
+					visited.minDistance = totalDistance;
+					visited.previous = unvisited;
+					priorety.add(visited);
 				}
 			}
 		}
 		return true;
 	}
 
-	private List<String> getShortestPath(NodeDi<T> target) {
+	private List<String> getShor(NodeDi<T> target) {
 		List<String> path = new ArrayList<String>();
 		if (target.minDistance==Integer.MAX_VALUE){
 			path.add("No path found");
@@ -185,25 +185,8 @@ public class DijkstraGraph<T extends Comparable<T>> {
 	public List<String> getPath(T from, T to) {
 		boolean test = Dijkstra(from);
 		if (test==false) return null;
-		List<String> path = getShortestPath(findNodeDi(to));
+		List<String> path = getShor(findNodeDi(to));
 		return path;
-	}
-
-	@Override
-	public String toString() {
-		String retval = "";
-		for (NodeDi<T> each : vertices) {
-			retval += each.toString() + "\n";
-		}
-		return retval;
-	}
-
-	public String edgesToString() {
-		String retval = "";
-		for (Edge each : edges) {
-			retval += each + "\n";
-		}
-		return retval;
 	}
 
 	class Edge {
@@ -227,9 +210,5 @@ public class DijkstraGraph<T extends Comparable<T>> {
 			to.addIncoming(from);
 		}
 
-		@Override
-		public String toString() {
-			return "Edge From: " + from.value + " to: " + to.value + " cost: " + cost;
-		}
 	}
 }

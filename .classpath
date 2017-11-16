@@ -5,5 +5,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/Tony/Desktop/jmathplot.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Tony/Desktop/jmatharray.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tony/Desktop/junit-benchmarks-0.7.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tony/Desktop/h2-1.4.196.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -2,24 +2,20 @@ package org.tec.datos1.search;
 
 public class InterpolationSearch<T extends Comparable<T>> {
 	
-	public int interpolationSearch(T find, T[] array) {
+	public int interpolationSearch(int find, Integer[] arra) {
         int min = 0;
-        int max = array.length - 1;
+        int max = arra.length - 1;
         int middle;
-        while (array[min].compareTo(find) <= 0 && array[max].compareTo(find) >= 0) {
-             //middle = min + ((find - array[min]) * (max - min)) / (array[max] - array[min]);
-//             if (array[middle] == find)
-//            	 return middle;
-//             else if (array[middle].compareTo(find) < 0)
-//                 min = middle + 1;
-//             else if (array[middle].compareTo(find) > 0)
-//                 max = middle - 1;
+        while (arra[min] <= find && arra[max] >= find) {
+             middle = min + ((find - arra[min]) * (max - min)) / (arra[max] - arra[min]);
+             if (arra[middle] == find)
+            	 return middle;
+             else if (arra[middle] < find)
+                 min = middle + 1;
+             else if (arra[middle] > find)
+                 max = middle - 1;
        }
         return -1;
-//        if (arreglo[min] == buscado)
-//            return min;
-//        else
-//            return -1; 
-    }    
-
+        
+	}
 }
