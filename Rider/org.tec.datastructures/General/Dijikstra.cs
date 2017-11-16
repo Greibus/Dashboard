@@ -1,16 +1,11 @@
-﻿using Advanced.Algorithms.DataStructures;
-using Advanced.Algorithms.DataStructures.Graph.AdjacencyList;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Advanced.Algorithms.DataStructures.Heap.Min;
-using Advanced.Algorithms.DataStructures.Heap;
+using org.tec.datastructures.General.Graph.AdjacencyList;
+using org.tec.datastructures.General.Heap;
+using org.tec.datastructures.General.Heap.Min;
 
-namespace Advanced.Algorithms.GraphAlgorithms
+namespace org.tec.datastructures.General
 {
-    /// <summary>
-    /// generic operators
-    /// </summary>
-    /// <typeparam name="W"></typeparam>
     public interface IShortestPathOperators<W> where W : IComparable
     {
         W DefaultValue { get; }
@@ -18,11 +13,6 @@ namespace Advanced.Algorithms.GraphAlgorithms
         W Sum(W a, W b);
     }
 
-    /// <summary>
-    /// For fibornacci heap node
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <typeparam name="W"></typeparam>
     internal class MinHeapWrap<T, W> : IComparable where W : IComparable
     {
         internal T Target { get; set; }
@@ -34,11 +24,6 @@ namespace Advanced.Algorithms.GraphAlgorithms
         }
     }
 
-    /// <summary>
-    /// For result
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <typeparam name="W"></typeparam>
     public class ShortestPathResult<T, W> where W : IComparable
     {
         public ShortestPathResult(List<T> path, W length)
@@ -49,10 +34,6 @@ namespace Advanced.Algorithms.GraphAlgorithms
         public W Length { get; internal set; }
         public List<T> Path { get; private set; }
     }
-    /// <summary>
-    /// A dijikstra algorithm implementation using Fibornacci Heap
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
     public class DijikstraShortestPath<T, W> where W : IComparable
     {
         IShortestPathOperators<W> operators;
@@ -61,40 +42,25 @@ namespace Advanced.Algorithms.GraphAlgorithms
             this.operators = operators;
         }
 
-        /// <summary>
-        /// Get shortest distance to target
-        /// </summary>
-        /// <param name="graph"></param>
-        /// <param name="source"></param>
-        /// <param name="destination"></param>
-        /// <returns></returns>
         public ShortestPathResult<T, W> GetShortestPath(WeightedDiGraph<T, W> graph, T source, T destination)
         {
-            //regular argument checks
             if (graph == null || graph.FindVertex(source) == null
                 || graph.FindVertex(destination) == null)
             {
                 throw new ArgumentException();
             }
 
-            //track progress for distance to each Vertex from source
             var progress = new Dictionary<T, W>();
 
-            //trace our current path by mapping current vertex to its Parent
             var parentMap = new Dictionary<T, T>();
 
-            //min heap to pick next closest vertex 
             var minHeap = new FibornacciMinHeap<MinHeapWrap<T, W>>();
-            //keep references of heap Node for decrement key operation
             var heapMapping = new Dictionary<T, FibornacciHeapNode<MinHeapWrap<T, W>>>();
 
-            //add vertices to min heap and progress map
             foreach (var vertex in graph.Vertices)
             {
-                //init parent
                 parentMap.Add(vertex.Key, default(T));
 
-                //init to max value
                 progress.Add(vertex.Key, operators.MaxValue);
 
                 if (vertex.Key.Equals(source))
@@ -102,7 +68,6 @@ namespace Advanced.Algorithms.GraphAlgorithms
                     continue;
                 }
 
-                //construct heap for all vertices with Max Distance as default
                 var wrap = new MinHeapWrap<T, W>()
                 {
                     Distance = operators.MaxValue,
@@ -113,7 +78,6 @@ namespace Advanced.Algorithms.GraphAlgorithms
                 heapMapping.Add(vertex.Key, heapNode);
             }
 
-            //start from source vertex as current 
             var sourceVertex = graph.Vertices[source];
             var current = new MinHeapWrap<T, W>()
             {
@@ -121,58 +85,40 @@ namespace Advanced.Algorithms.GraphAlgorithms
                 Target = source
             };
 
-            //until heap is empty
             while (minHeap.Count > 0)
             {
-                //no path exists, so return max value
                 if(current.Distance.Equals(operators.MaxValue))
                 {
                     return new ShortestPathResult<T, W>(null, operators.MaxValue);
                 }
 
-                //visit neighbours of current
                 foreach (var neighbour in graph.Vertices[current.Target].OutEdges)
                 {
-                    //new distance to neighbour
                     var newDistance = operators.Sum(current.Distance,
                         graph.Vertices[current.Target].OutEdges[neighbour.Key]);
 
-                    //current distance to neighbour
                     var existingDistance = progress[neighbour.Key.Value];
 
-                    //update distance if new is better
                     if (newDistance.CompareTo(existingDistance) < 0)
                     {
                         progress[neighbour.Key.Value] = newDistance;
                         heapMapping[neighbour.Key.Value].Value.Distance = newDistance;
 
-                        //decrement distance to neighbour in heap
                         minHeap.DecrementKey(heapMapping[neighbour.Key.Value]);
 
-                        //trace parent
                         parentMap[neighbour.Key.Value] = current.Target;
                     }
                 }
 
-                //next min vertex to visit
                 current = minHeap.ExtractMin();
             }
 
             return tracePath(graph, parentMap, source, destination);
          
         }
-        /// <summary>
-        /// trace back path from destination to source using parent map
-        /// </summary>
-        /// <param name="graph"></param>
-        /// <param name="parentMap"></param>
-        /// <param name="source"></param>
-        /// <param name="destination"></param>
-        /// <returns></returns>
         private ShortestPathResult<T, W> tracePath(WeightedDiGraph<T, W> graph,
             Dictionary<T, T> parentMap, T source, T destination)
         {
-            //trace the path
             var pathStack = new Stack<T>();
 
             pathStack.Push(destination);
@@ -184,7 +130,6 @@ namespace Advanced.Algorithms.GraphAlgorithms
                 currentV = parentMap[currentV];
             }
 
-            //return result
             var resultPath = new List<T>();
             var resultLength = operators.DefaultValue;
             while (pathStack.Count > 0)

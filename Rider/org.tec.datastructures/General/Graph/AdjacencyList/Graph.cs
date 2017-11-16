@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Advanced.Algorithms.DataStructures.Graph.AdjacencyList
+namespace org.tec.datastructures.General.Graph.AdjacencyList
 {
-    /// <summary>
-    /// A graph vertex
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
+    
     public class GraphVertex<T>
     {
         public T Value { get; set; }
@@ -22,29 +19,20 @@ namespace Advanced.Algorithms.DataStructures.Graph.AdjacencyList
 
     }
 
-    //TODO implement IEnumerable & make sure duplicates are handled correctly if its not already
-    /// <summary>
-    /// A graph implementation
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
+    
     public class Graph<T>
     {
         public int VerticesCount => Vertices.Count;
         internal Dictionary<T, GraphVertex<T>> Vertices { get; set; }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
+        
         public Graph()
         {
             Vertices = new Dictionary<T, GraphVertex<T>>();
         }
 
 
-        /// <summary>
-        /// return a reference vertex  to start traversing Vertices
-        ///  O(1) complexity
-        /// </summary>
+       
         public GraphVertex<T> ReferenceVertex
         {
             get
@@ -62,12 +50,7 @@ namespace Advanced.Algorithms.DataStructures.Graph.AdjacencyList
         }
 
 
-        /// <summary>
-        /// add a new vertex to this graph
-        /// O(1) complexity
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        
         public GraphVertex<T> AddVertex(T value)
         {
             if (value == null)
@@ -82,11 +65,7 @@ namespace Advanced.Algorithms.DataStructures.Graph.AdjacencyList
             return newVertex;
         }
 
-        /// <summary>
-        /// remove an existing vertex from this graph
-        /// O(V) complexity
-        /// </summary>
-        /// <param name="vertex"></param>
+        
         public void RemoveVertex(T vertex)
         {
             if (vertex == null)
@@ -107,12 +86,7 @@ namespace Advanced.Algorithms.DataStructures.Graph.AdjacencyList
             Vertices.Remove(vertex);
         }
 
-        /// <summary>
-        /// add and edge to this graph
-        /// O(1) complexity
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="dest"></param>
+        
         public void AddEdge(T source, T dest)
         {
             if (source == null || dest == null)
@@ -135,12 +109,7 @@ namespace Advanced.Algorithms.DataStructures.Graph.AdjacencyList
             Vertices[dest].Edges.Add(Vertices[source]);
         }
 
-        /// <summary>
-        /// remove an edge from this graph
-        ///  O(1) complexity
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="dest"></param>
+        
         public void RemoveEdge(T source, T dest)
         {
 
@@ -164,13 +133,7 @@ namespace Advanced.Algorithms.DataStructures.Graph.AdjacencyList
             Vertices[dest].Edges.Remove(Vertices[source]);
         }
 
-        /// <summary>
-        /// do we have an edge between given source and destination?
-        ///  O(1) complexity
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="dest"></param>
-        /// <returns></returns>
+        
         public bool HasEdge(T source, T dest)
         {
             if (!Vertices.ContainsKey(source) || !Vertices.ContainsKey(dest))
@@ -192,12 +155,7 @@ namespace Advanced.Algorithms.DataStructures.Graph.AdjacencyList
             return Vertices[vertex].Edges.Select(x => x.Value).ToList();
         }
 
-        /// <summary>
-        /// returns the vertex object with given value
-        ///  O(1) complexity
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        
         public GraphVertex<T> FindVertex(T value)
         {
             if (Vertices.ContainsKey(value))

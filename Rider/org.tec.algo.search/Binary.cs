@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace org.tec.algo.search{
+namespace org.tec.algo.Search{
 
     public class Binary<T> where T : IComparable<T> {
 

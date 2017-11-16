@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Advanced.Algorithms.DataStructures.Graph.AdjacencyList
+namespace org.tec.datastructures.General.Graph.AdjacencyList
 {
-    /// <summary>
-    /// Graph vertex
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
+    
     public class DiGraphVertex<T>
     {
         public T Value { get; set; }
@@ -24,28 +21,19 @@ namespace Advanced.Algorithms.DataStructures.Graph.AdjacencyList
 
     }
 
-    //TODO implement IEnumerable & make sure duplicates are handled correctly if its not already
-    /// <summary>
-    /// A directed graph implementation
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
+    
     public class DiGraph<T>
     {
         public int VerticesCount => Vertices.Count;
         internal Dictionary<T, DiGraphVertex<T>> Vertices { get; set; }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
+        
         public DiGraph()
         {
             Vertices = new Dictionary<T, DiGraphVertex<T>>();
         }
 
-        /// <summary>
-        /// return a reference vertex  to start traversing Vertices
-        /// O(1) complexity
-        /// </summary>
+        
         public DiGraphVertex<T> ReferenceVertex
         {
             get
@@ -64,12 +52,7 @@ namespace Advanced.Algorithms.DataStructures.Graph.AdjacencyList
         }
 
 
-        /// <summary>
-        /// add a new vertex to this graph
-        /// O(1) complexity
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        
         public DiGraphVertex<T> AddVertex(T value)
         {
             if ( value == null)
@@ -84,11 +67,7 @@ namespace Advanced.Algorithms.DataStructures.Graph.AdjacencyList
             return newVertex;
         }
 
-        /// <summary>
-        /// remove an existing vertex frm graph
-        /// O(V) complexity
-        /// </summary>
-        /// <param name="value"></param>
+        
         public void RemoveVertex(T value)
         {
             if (value == null)
@@ -114,12 +93,7 @@ namespace Advanced.Algorithms.DataStructures.Graph.AdjacencyList
             Vertices.Remove(value);
         }
 
-        /// <summary>
-        /// add an edge from source to destination vertex
-        /// O(1) complexity
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="dest"></param>
+        
         public void AddEdge(T source, T dest)
         {
             if (source == null || dest == null)
@@ -141,12 +115,7 @@ namespace Advanced.Algorithms.DataStructures.Graph.AdjacencyList
             Vertices[dest].InEdges.Add(Vertices[source]);
         }
 
-        /// <summary>
-        /// remove an existing edge between source & destination
-        ///  O(1) complexity
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="dest"></param>
+        
         public void RemoveEdge(T source, T dest)
         {
 
@@ -170,13 +139,7 @@ namespace Advanced.Algorithms.DataStructures.Graph.AdjacencyList
             Vertices[dest].InEdges.Remove(Vertices[source]);
         }
 
-        /// <summary>
-        /// do we have an edge between the given source and destination?
-        /// O(1) complexity
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="dest"></param>
-        /// <returns></returns>
+        
         public bool HasEdge(T source, T dest)
         {
             if (!Vertices.ContainsKey(source) || !Vertices.ContainsKey(dest))
@@ -208,12 +171,7 @@ namespace Advanced.Algorithms.DataStructures.Graph.AdjacencyList
             return Vertices[vertex].InEdges.Select(x => x.Value).ToList();
         }
 
-        /// <summary>
-        /// returns the vertex object with given value
-        /// O(1) complexity
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        
         public DiGraphVertex<T> FindVertex(T value)
         {
             if (Vertices.ContainsKey(value))
@@ -224,10 +182,7 @@ namespace Advanced.Algorithms.DataStructures.Graph.AdjacencyList
             return null;
         }
 
-        /// <summary>
-        /// clones object
-        /// </summary>
-        /// <returns></returns>
+       
         internal DiGraph<T> Clone()
         {
             var newGraph = new DiGraph<T>();

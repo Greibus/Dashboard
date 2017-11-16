@@ -1,14 +1,9 @@
-﻿using Advanced.Algorithms.DataStructures.Graph.AdjacencyList;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using org.tec.datastructures.General.Graph.AdjacencyList;
 
-namespace Advanced.Algorithms.GraphAlgorithms.ShortestPath
-{
-    /// <summary>
-    /// Result object 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <typeparam name="W"></typeparam>
+namespace org.tec.datastructures.General{
+    
     public class AllPairShortestPathResult<T, W> where W : IComparable
     {
         public T Source { get; }
@@ -38,8 +33,6 @@ namespace Advanced.Algorithms.GraphAlgorithms.ShortestPath
 
         public List<AllPairShortestPathResult<T, W>> GetAllPairShortestPaths(WeightedGraph<T, W> graph)
         {
-            //we need this vertex array index for generics
-            //since array indices are int and T is unknown type
             var vertexIndex = new Dictionary<int, T>();
             var reverseVertexIndex = new Dictionary<T, int>();
             int i = 0;
@@ -50,9 +43,7 @@ namespace Advanced.Algorithms.GraphAlgorithms.ShortestPath
                 i++;
             }
 
-            //init all distance to default Weight
             var result = new W[graph.Vertices.Count, graph.Vertices.Count];
-            //to trace the path
             var parent = new T[graph.Vertices.Count, graph.Vertices.Count];
             for (i = 0; i < graph.VerticesCount; i++)
             {
@@ -66,7 +57,6 @@ namespace Advanced.Algorithms.GraphAlgorithms.ShortestPath
             {
                 result[i, i] = operators.DefaultValue;
             }
-            //now set the known edge weights to neighbours
             for (i = 0; i < graph.VerticesCount; i++)
             {
                 foreach (var edge in graph.Vertices[vertexIndex[i]].Edges)
@@ -79,15 +69,12 @@ namespace Advanced.Algorithms.GraphAlgorithms.ShortestPath
                 }
             }
 
-            //here is the meat of this algorithm
-            //if we can reach node i to j via node k and if it is shorter pick that Distance
             for (int k = 0; k < graph.VerticesCount; k++)
             {
                 for (i = 0; i < graph.VerticesCount; i++)
                 {
                     for (int j = 0; j < graph.VerticesCount; j++)
                     {
-                        //no path
                         if (result[i, k].Equals(operators.MaxValue) 
                             || result[k, j].Equals(operators.MaxValue))
                         {
@@ -105,7 +92,6 @@ namespace Advanced.Algorithms.GraphAlgorithms.ShortestPath
                 }
             }
 
-            //trace path
             var finalResult = new List<AllPairShortestPathResult<T, W>>();
             for (i = 0; i < graph.VerticesCount; i++)
             {
@@ -124,16 +110,7 @@ namespace Advanced.Algorithms.GraphAlgorithms.ShortestPath
             return finalResult;
         }
 
-        /// <summary>
-        /// trace path from dest to source
-        /// </summary>
-        /// <param name="result"></param>
-        /// <param name="parent"></param>
-        /// <param name="i"></param>
-        /// <param name="j"></param>
-        /// <param name="vertexIndex"></param>
-        /// <param name="reverseVertexIndex"></param>
-        /// <returns></returns>
+        
         private List<T> tracePath(W[,] result, T[,] parent, int i, int j,
             Dictionary<int, T> vertexIndex, Dictionary<T, int> reverseVertexIndex)
         {

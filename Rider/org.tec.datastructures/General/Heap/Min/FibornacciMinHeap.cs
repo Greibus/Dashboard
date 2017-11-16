@@ -1,27 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Advanced.Algorithms.DataStructures.Heap.Min
+namespace org.tec.datastructures.General.Heap.Min
 {
-    //TODO implement IEnumerable & make sure duplicates are handled correctly if its not already
     public class FibornacciMinHeap<T> where T : IComparable
     {
         internal FibornacciHeapNode<T> heapForestHead;
 
-        //holds the minimum node at any given time
         private FibornacciHeapNode<T> minNode = null;
 
         public int Count { get; private set; }
 
-        /// <summary>
-        /// O(1) complexity amortized
-        /// </summary>
-        /// <param name="newItem"></param>
         public FibornacciHeapNode<T> Insert(T newItem)
         {
             var newNode = new FibornacciHeapNode<T>(newItem);
 
-            //return pointer to new Node
             MergeForests(newNode);
 
             if (minNode == null)
@@ -41,9 +34,6 @@ namespace Advanced.Algorithms.DataStructures.Heap.Min
             return newNode;
         }
 
-        /// <summary>
-        /// Merge roots with same degrees in Forest 
-        /// </summary>
         private void Meld()
         {
 
@@ -53,7 +43,6 @@ namespace Advanced.Algorithms.DataStructures.Heap.Min
                 return;
             }
 
-            //degree - node dictionary
             var mergeDictionary = new Dictionary<int, FibornacciHeapNode<T>>();
 
             var current = heapForestHead;
@@ -62,8 +51,6 @@ namespace Advanced.Algorithms.DataStructures.Heap.Min
             {
                 current.Parent = null;
                 var next = current.Next;
-                //no same degree already in merge dictionary
-                //add to hash table
                 if (!mergeDictionary.ContainsKey(current.Degree))
                 {
                   
@@ -80,8 +67,6 @@ namespace Advanced.Algorithms.DataStructures.Heap.Min
                     current = next;
                     continue;
                 }
-                //insert back to forest by merging current tree 
-                //with existing tree in merge dictionary
                 else
                 {
                     var currentDegree = current.Degree;
@@ -128,7 +113,6 @@ namespace Advanced.Algorithms.DataStructures.Heap.Min
 
             }
 
-            //insert back trees with unique degrees to forest
             if (mergeDictionary.Count > 0)
             {
                 foreach (var node in mergeDictionary)
@@ -148,10 +132,6 @@ namespace Advanced.Algorithms.DataStructures.Heap.Min
         }
 
 
-        /// <summary>
-        /// O(log(n)) complexity
-        /// </summary>
-        /// <returns></returns>
         public T ExtractMin()
         {
             if (heapForestHead == null)
@@ -159,7 +139,6 @@ namespace Advanced.Algorithms.DataStructures.Heap.Min
 
             var minValue = minNode.Value;
 
-            //remove tree root
             DeleteNode(ref heapForestHead, minNode);
 
             MergeForests(minNode.ChildrenHead);
@@ -171,11 +150,6 @@ namespace Advanced.Algorithms.DataStructures.Heap.Min
         }
 
 
-        /// <summary>
-        /// Update the Heap with new value for this node pointer
-        /// O(1) complexity amortized
-        /// </summary>
-        /// <param name="key"></param>
         public void DecrementKey(FibornacciHeapNode<T> node)
         {
 
@@ -193,15 +167,12 @@ namespace Advanced.Algorithms.DataStructures.Heap.Min
 
                 var parent = current.Parent;
 
-                //if parent already lost one child
-                //then cut current and parent
                 if (parent.LostChild)
                 {
                     parent.LostChild = false;
 
                     var grandParent = parent.Parent;
 
-                    //mark grand parent
                     if (grandParent != null)
                     {
                         Cut(parent);
@@ -215,16 +186,10 @@ namespace Advanced.Algorithms.DataStructures.Heap.Min
             }
 
         }
-        /// <summary>
-        /// Delete this node from Heap Tree and adds it to forest as a new tree 
-        /// </summary>
-        /// <param name="node"></param>
         private void Cut(FibornacciHeapNode<T> node)
         {
             var parent = node.Parent;
 
-            //cut child and attach to heap Forest
-            //and mark parent for lost child
             var childHead = node.Parent.ChildrenHead;
             DeleteNode(ref childHead, node);
             node.Parent.ChildrenHead = childHead;
@@ -239,7 +204,6 @@ namespace Advanced.Algorithms.DataStructures.Heap.Min
 
             InsertNode(ref heapForestHead, node);
 
-            //update min
             if (minNode.Value.CompareTo(node.Value) > 0)
             {
                 minNode = node;
@@ -247,21 +211,12 @@ namespace Advanced.Algorithms.DataStructures.Heap.Min
 
         }
 
-        /// <summary>
-        /// Unions this heap with another
-        /// O(k) complexity where K is the FibornacciHeap Forest Length 
-        /// </summary>
-        /// <param name="FibornacciHeap"></param>
         public void Union(FibornacciMinHeap<T> FibornacciHeap)
         {
             MergeForests(FibornacciHeap.heapForestHead);
             Count = Count + FibornacciHeap.Count;
         }
 
-        /// <summary>
-        /// Merges the given fibornacci node list to current Forest 
-        /// </summary>
-        /// <param name="headPointer"></param>
         private void MergeForests(FibornacciHeapNode<T> headPointer)
         {
             var current = headPointer;
@@ -316,9 +271,6 @@ namespace Advanced.Algorithms.DataStructures.Heap.Min
             deletionNode.Previous = null;
         }
 
-        /// <summary>
-        ///  O(1) complexity 
-        /// <returns></returns>
         public T PeekMin()
         {
             if (heapForestHead == null)

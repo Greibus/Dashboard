@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace org.tec.algo.search {
+namespace org.tec.algo.Search {
     
     
     public class Polation <T> where T : IComparable<T> {

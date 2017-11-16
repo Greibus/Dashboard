@@ -1,6 +1,7 @@
-
-﻿using NUnit.Framework;
-using org.tec.datastructures.Nodes;
+﻿
+ using NUnit.Framework;
+ using org.tec.datastructures.Linear;
+ using org.tec.datastructures.Nodes;
 
 namespace org.tec.datastructures.Tests{
     

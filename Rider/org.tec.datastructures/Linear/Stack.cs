@@ -1,8 +1,7 @@
-
 ﻿using System;
 using org.tec.datastructures.Nodes;
 
-namespace org.tec.datastructures
+namespace org.tec.datastructures.Linear
 {
     public class Stack<T> where T : IComparable<T>{
         
