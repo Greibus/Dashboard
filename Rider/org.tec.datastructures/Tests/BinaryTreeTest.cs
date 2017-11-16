@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-﻿namespace org.tec.datastructures.Tests
-{
-    public class BinaryTreeTest
-    {
-        
-    }
-}
-=======
+
 ﻿using NUnit.Framework;
 using org.tec.datastructures.Hierarchical;
 
@@ -71,4 +63,3 @@ namespace org.tec.datastructures.Tests{
     }
                       
 }
->>>>>>> branch 'master' of https://github.com/Greibus/Dashboard.git

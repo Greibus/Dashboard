@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-﻿namespace org.tec.datastructures.Tests
-{
-    public class AVLTreeTest
-    {
-        
-    }
-=======
 ﻿using NUnit.Framework;
 using org.tec.datastructures.Hierarchical;
 
@@ -74,5 +66,4 @@ namespace org.tec.datastructures.Tests{
         
         
     }
->>>>>>> branch 'master' of https://github.com/Greibus/Dashboard.git
 }

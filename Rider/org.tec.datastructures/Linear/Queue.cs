@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-﻿namespace org.tec.datastructures
-{
-    public class Queue
-    {
-        
-    }
-=======
+
 ﻿using System;
 using org.tec.datastructures.Nodes;
 
@@ -81,5 +74,4 @@ namespace org.tec.datastructures.Linear
         }
         
     }
->>>>>>> branch 'master' of https://github.com/Greibus/Dashboard.git
 }

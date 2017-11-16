@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-﻿namespace org.tec.datastructures
-{
-    public class BinaryTree
-    {
-        
-    }
-=======
+
 ﻿using System;
 using org.tec.datastructures.Nodes;
 
@@ -106,5 +99,4 @@ namespace org.tec.datastructures.Hierarchical
         
         
     }
->>>>>>> branch 'master' of https://github.com/Greibus/Dashboard.git
 }

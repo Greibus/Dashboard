@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-﻿namespace org.tec.datastructures.Tests
-{
-    public class CircularListTest
-    {
-        
-    }
-=======
-﻿using System;
+
+ using System;
 using NUnit.Framework;
 using org.tec.datastructures.Linear;
 
@@ -17,13 +10,28 @@ namespace org.tec.datastructures.Tests
     public class CircularListTest{
         
         [Test]
-        public void AppendTest()
-        {
-            CircularList<string> list = new CircularList<string>();
-            list.Append("Prueba");
-            list.Append("Prueba2");
-            Assert.AreEqual("Prueba", list.Search("Prueba"));
-            Assert.AreEqual("Prueba2", list.Search("Prueba2"));
+        public void testAppendFirst() {
+            CircularList<int> tester = new CircularList<int>();
+		
+            Assert.Null(tester.GetHead());
+            tester.Append(0);
+            Assert.NotNull(tester.GetHead());
+		
+            Object appended = tester.GetHead().GetValue();
+            Assert.AreEqual(appended,0);
+		
+        }
+	
+        [Test]
+        public void testAppend() {
+            CircularList<int> tester = new CircularList<int>();
+		
+            tester.Append(0);
+            tester.Append(1);
+            tester.Append(2);
+		
+            Object appended = tester.GetHead().GetNext().GetNext().GetValue();
+            Assert.AreEqual(appended,2);
         }
 
         [Test]
@@ -80,5 +88,4 @@ namespace org.tec.datastructures.Tests
         
         
     }
->>>>>>> branch 'master' of https://github.com/Greibus/Dashboard.git
 }

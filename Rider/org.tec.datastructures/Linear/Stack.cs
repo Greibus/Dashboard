@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-﻿namespace org.tec.datastructures
-{
-    public class Stack
-    {
-        
-    }
-=======
+
 ﻿using System;
 using org.tec.datastructures.Nodes;
 
@@ -63,5 +56,4 @@ namespace org.tec.datastructures
         }
         
     }
->>>>>>> branch 'master' of https://github.com/Greibus/Dashboard.git
 }

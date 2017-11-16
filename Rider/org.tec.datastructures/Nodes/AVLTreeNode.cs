@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-﻿namespace org.tec.datastructures
-{
-    public class AVLTreeNode
-    {
-        
-    }
-}
-=======
+
 ﻿using System;
 
 namespace org.tec.datastructures.Nodes{
@@ -119,4 +111,3 @@ namespace org.tec.datastructures.Nodes{
         
         
 }
->>>>>>> branch 'master' of https://github.com/Greibus/Dashboard.git
