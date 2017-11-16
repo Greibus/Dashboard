@@ -11,18 +11,18 @@ namespace org.tec.datastructures.Tests {
     {
         SplayTree<int> tree = new SplayTree<int>();
         tree.Append(20);
-        Assert.AreEqual(20, tree.GetRoot().Value);
+        Assert.AreEqual(20, tree.getRoot().value);
 
         tree.Append(30);
-        Assert.AreEqual(30, tree.GetRoot().Value);
-        Assert.AreEqual(20, tree.GetRoot().Left.Value);
+        Assert.AreEqual(30, tree.getRoot().value);
+        Assert.AreEqual(20, tree.getRoot().left.value);
 
         tree.Append(40);
-        Assert.AreEqual(40, tree.GetRoot().Value);
+        Assert.AreEqual(40, tree.getRoot().value);
 
         tree.Append(0);
-        Assert.AreEqual(0, tree.GetRoot().Value);
-        Assert.AreEqual(40, tree.GetRoot().Right.Value);
+        Assert.AreEqual(0, tree.getRoot().value);
+        Assert.AreEqual(40, tree.getRoot().right.value);
     }
 
     

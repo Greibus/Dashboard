@@ -53,9 +53,9 @@
     <Compile Include="Linear\Stack.cs" />
     <Compile Include="Nodes\AVLTreeNode.cs" />
     <Compile Include="Nodes\BinaryTreeNode.cs" />
-    <Compile Include="Nodes\BTreePage.cs" />
     <Compile Include="Nodes\DoubleNode.cs" />
     <Compile Include="Nodes\SimpleNode.cs" />
+      <Compile Include="Nodes\SplayNode.cs"/>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\AVLTreeTest.cs" />
     <Compile Include="Tests\BinaryTreeTest.cs" />
@@ -64,11 +64,27 @@
     <Compile Include="Tests\DoubleListTest.cs" />
     <Compile Include="Tests\QueueTest.cs" />
     <Compile Include="Tests\SimpleListTest.cs" />
+      <Compile Include="Tests\SplayTreeTest.cs"/>
     <Compile Include="Tests\StackTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+    <ItemGroup>
+        <Content Include="bin\Debug\nunit.framework.dll"/>
+        <Content Include="bin\Debug\nunit.framework.xml"/>
+        <Content Include="bin\Debug\org.tec.datastructures.dll"/>
+        <Content Include="bin\Debug\org.tec.datastructures.pdb"/>
+        <Content Include="obj\Debug\org.tec.datastructures.csproj.CopyComplete"/>
+        <Content Include="obj\Debug\org.tec.datastructures.csproj.CoreCompileInputs.cache"/>
+        <Content Include="obj\Debug\org.tec.datastructures.csproj.FileListAbsolute.txt"/>
+        <Content Include="obj\Debug\org.tec.datastructures.csprojResolveAssemblyReference.cache"/>
+        <Content Include="obj\Debug\org.tec.datastructures.dll"/>
+        <Content Include="obj\Debug\org.tec.datastructures.pdb"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="General"/>
+    </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

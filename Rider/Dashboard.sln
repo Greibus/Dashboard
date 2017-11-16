@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "org.tec.algo.search", "org.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "org.tec.algo.sort", "org.tec.algo.sort\org.tec.algo.sort.csproj", "{A5BA42D5-C3CA-416F-892B-C62AD2657556}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmarks", "Benchmarks\Benchmarks.csproj", "{79E2A0CB-B850-4C9B-95DE-018BA795B02E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A5BA42D5-C3CA-416F-892B-C62AD2657556}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5BA42D5-C3CA-416F-892B-C62AD2657556}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5BA42D5-C3CA-416F-892B-C62AD2657556}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79E2A0CB-B850-4C9B-95DE-018BA795B02E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79E2A0CB-B850-4C9B-95DE-018BA795B02E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79E2A0CB-B850-4C9B-95DE-018BA795B02E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79E2A0CB-B850-4C9B-95DE-018BA795B02E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
