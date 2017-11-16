@@ -42,13 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+      <Compile Include="Bench.cs"/>
       <Compile Include="Bubble.cs"/>
+      <Compile Include="MainTest.cs"/>
       <Compile Include="Quicksort.cs"/>
       <Compile Include="Insert.cs"/>
       <Compile Include="Merge.cs"/>
       <Compile Include="Selection.cs"/>
       <Compile Include="Shell.cs"/>
     <Compile Include="Properties\AssemblyInfo.cs" />
+      <Compile Include="Sorting.cs"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -62,6 +65,12 @@
         <Content Include="obj\Debug\org.tec.algo.sort.csproj.FileListAbsolute.txt"/>
         <Content Include="obj\Debug\org.tec.algo.sort.dll"/>
         <Content Include="obj\Debug\org.tec.algo.sort.pdb"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Benchmarks\Benchmarks.csproj">
+            <Project>{79e2a0cb-b850-4c9b-95de-018ba795b02e}</Project>
+            <Name>Benchmarks</Name>
+        </ProjectReference>
     </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

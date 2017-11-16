@@ -2,7 +2,7 @@
 
 namespace org.tec.algo.sort {
     
-    public class Bubble<T> where T : IComparable<T> {
+    public class Bubble<T> : Sorting<T> where T : IComparable<T> {
        
         private void swap(T[] array, int i, int j) {
             T temp = array[i];
@@ -32,5 +32,8 @@ namespace org.tec.algo.sort {
                 Console.WriteLine(array[i] + " ");
         }
         
+        public void execute(T [] miArray) {
+            this.bubbleSort(miArray);
+        }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace org.tec.algo.sort {
     
-    public class Merge<T> where T : IComparable<T> {
+    public class Merge<T> : Sorting<T> where T : IComparable<T>{
         
         public void MergeSort(T[] array) {
             T[] tmp = array.Clone() as T[];
@@ -43,5 +43,8 @@ namespace org.tec.algo.sort {
                 Console.WriteLine(array[i] + " ");
         }
         
+        public void execute(T [] miArray) {
+            this.MergeSort(miArray);
+        }
     }
 }

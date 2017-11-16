@@ -2,7 +2,7 @@
 
 namespace org.tec.algo.sort {
     
-    public class Selection<T> where T : IComparable<T> {
+    public class Selection<T> : Sorting<T> where T : IComparable<T>{
         
         private void swap(T[] array, int i, int j) {
             T temp = array[i];
@@ -31,6 +31,10 @@ namespace org.tec.algo.sort {
         public void printSelectionSort(T[] array) {
             for (int i=0; i< array.Length; ++i)
                 Console.WriteLine(array[i] + " ");
+        }
+        
+        public void execute(T [] miArray) {
+            this.selectionSort(miArray);
         }
         
     }

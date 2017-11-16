@@ -42,6 +42,69 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+      <Compile Include="General\Dijikstra.cs"/>
+      <Compile Include="General\Floyd-Warshall.cs"/>
+      <Compile Include="General\Graph\AdjacencyList\DiGraph.cs"/>
+      <Compile Include="General\Graph\AdjacencyList\Graph.cs"/>
+      <Compile Include="General\Graph\AdjacencyList\WeightedDiGraph.cs"/>
+      <Compile Include="General\Graph\AdjacencyList\WeightedGraph.cs"/>
+      <Compile Include="General\Graph\AdjacencyMatrix\DiGraph.cs"/>
+      <Compile Include="General\Graph\AdjacencyMatrix\Graph.cs"/>
+      <Compile Include="General\Graph\AdjacencyMatrix\WeightedDiGraph.cs"/>
+      <Compile Include="General\Graph\AdjacencyMatrix\WeightedGraph.cs"/>
+      <Compile Include="General\HashSet\HashSet.cs"/>
+      <Compile Include="General\HashSet\OpenAddressHashSet.cs"/>
+      <Compile Include="General\HashSet\SeparateChainingHashSet.cs"/>
+      <Compile Include="General\HashSet\TreeHashSet.cs"/>
+      <Compile Include="General\Heap\BinomialHeapNode.cs"/>
+      <Compile Include="General\Heap\FibornacciHeapNode.cs"/>
+      <Compile Include="General\Heap\Max\BinomialMaxHeap.cs"/>
+      <Compile Include="General\Heap\Max\BMaxHeap.cs"/>
+      <Compile Include="General\Heap\Max\d-aryMaxHeap.cs"/>
+      <Compile Include="General\Heap\Max\FibornacciMaxHeap.cs"/>
+      <Compile Include="General\Heap\Max\PairingMaxHeap.cs"/>
+      <Compile Include="General\Heap\Min\BinomialMinHeap.cs"/>
+      <Compile Include="General\Heap\Min\BMinHeap.cs"/>
+      <Compile Include="General\Heap\Min\d-aryMinHeap.cs"/>
+      <Compile Include="General\Heap\Min\FibornacciMinHeap.cs"/>
+      <Compile Include="General\Heap\Min\PairingMinHeap.cs"/>
+      <Compile Include="General\Heap\PairingHeapNode.cs"/>
+      <Compile Include="General\LinkedList\CircularLinkedList.cs"/>
+      <Compile Include="General\LinkedList\DoublyLinkedList.cs"/>
+      <Compile Include="General\LinkedList\SinglyLinkedList.cs"/>
+      <Compile Include="General\List\ArrayList.cs"/>
+      <Compile Include="General\List\SkipList.cs"/>
+      <Compile Include="General\Queues\ArrayQueue.cs"/>
+      <Compile Include="General\Queues\CircularQueue.cs"/>
+      <Compile Include="General\Queues\LinkedListQueue.cs"/>
+      <Compile Include="General\Queues\PriorityQueue\MaxPriorityQueue.cs"/>
+      <Compile Include="General\Queues\PriorityQueue\MinPriorityQueue.cs"/>
+      <Compile Include="General\Queues\Queue.cs"/>
+      <Compile Include="General\Set\BloomFilter.cs"/>
+      <Compile Include="General\Set\DisJointSet.cs"/>
+      <Compile Include="General\Set\SparseSet.cs"/>
+      <Compile Include="General\Stack\ArrayStack.cs"/>
+      <Compile Include="General\Stack\LinkedListStack.cs"/>
+      <Compile Include="General\Stack\Stack.cs"/>
+      <Compile Include="General\Tree\AvlTree.cs"/>
+      <Compile Include="General\Tree\B+Tree.cs"/>
+      <Compile Include="General\Tree\BinaryTree.cs"/>
+      <Compile Include="General\Tree\BST.cs"/>
+      <Compile Include="General\Tree\BTree.cs"/>
+      <Compile Include="General\Tree\ExpressionTree.cs"/>
+      <Compile Include="General\Tree\FenwickTree.cs"/>
+      <Compile Include="General\Tree\Interfaces.cs"/>
+      <Compile Include="General\Tree\IntervalTree.cs"/>
+      <Compile Include="General\Tree\K_DTree.cs"/>
+      <Compile Include="General\Tree\RangeTree.cs"/>
+      <Compile Include="General\Tree\RedBlackTree.cs"/>
+      <Compile Include="General\Tree\SegmentTree.cs"/>
+      <Compile Include="General\Tree\SplayTree.cs"/>
+      <Compile Include="General\Tree\SuffixTree.cs"/>
+      <Compile Include="General\Tree\TernarySearchTree.cs"/>
+      <Compile Include="General\Tree\TreapTree.cs"/>
+      <Compile Include="General\Tree\Tree.cs"/>
+      <Compile Include="General\Tree\Trie.cs"/>
     <Compile Include="Hierarchical\AVLTree.cs" />
     <Compile Include="Hierarchical\BinaryTree.cs" />
     <Compile Include="Hierarchical\BTree.cs" />
@@ -75,15 +138,13 @@
         <Content Include="bin\Debug\nunit.framework.xml"/>
         <Content Include="bin\Debug\org.tec.datastructures.dll"/>
         <Content Include="bin\Debug\org.tec.datastructures.pdb"/>
+        <Content Include="General\Graph\.DS_Store"/>
         <Content Include="obj\Debug\org.tec.datastructures.csproj.CopyComplete"/>
         <Content Include="obj\Debug\org.tec.datastructures.csproj.CoreCompileInputs.cache"/>
         <Content Include="obj\Debug\org.tec.datastructures.csproj.FileListAbsolute.txt"/>
         <Content Include="obj\Debug\org.tec.datastructures.csprojResolveAssemblyReference.cache"/>
         <Content Include="obj\Debug\org.tec.datastructures.dll"/>
         <Content Include="obj\Debug\org.tec.datastructures.pdb"/>
-    </ItemGroup>
-    <ItemGroup>
-        <Folder Include="General"/>
     </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,7 +2,7 @@
 
 namespace org.tec.algo.sort
 {
-    public class Shell<T> where T : IComparable<T>{
+    public class Shell<T> : Sorting<T> where T : IComparable<T>{
         
         private void swap(T[] array, int i, int j) {
             T temp = array[i];
@@ -28,6 +28,10 @@ namespace org.tec.algo.sort
             for (int i=0; i< array.Length; ++i)
                 Console.WriteLine(array[i] + " ");
         } 
+        
+        public void execute(T [] miArray) {
+            this.shellSort(miArray);
+        }
         
     }
 }
